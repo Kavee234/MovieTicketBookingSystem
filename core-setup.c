@@ -203,3 +203,48 @@ void bookSeat(int m, int t) {
     printf("     VISIT OUR SITE : https://kdtigmovieland.com    \n");
     printf("----------------------------------------------------\n");
 }
+void cancelBooking(int m, int t) {
+    char rowChar;
+    int col;
+    printf("\nENTER ROW (A-E): ");
+    scanf(" %c", &rowChar);
+    printf("ENTER SEAT NUMBER (1-10): ");
+    scanf("%d", &col);
+
+    int row = rowChar - 'A';
+    col--;
+
+    if (row < 0 || row >= ROWS || col < 0 || col >= COLS) {
+        printf("[X] INVALID SEAT SELECTION! [X]\n");
+        return;
+    }
+    if (!showtimes[m][t].seats[row][col].booked) {
+        printf("[X] CANNOT CANCEL — SEAT NOT BOOKED! [X]\n");
+        return;
+    }
+
+    showtimes[m][t].seats[row][col].booked = 0;
+    showtimes[m][t].seats[row][col].pricePaid = 0;
+    strcpy(showtimes[m][t].seats[row][col].customerName, "");
+    printf(" BOOKING CANCELLED SUCCESSFULLY!\n");
+}
+
+void searchBooking(int m, int t) {
+    char name[50];
+    printf("\nENTER CUSTOMER NAME: ");
+    scanf(" %[^\n]", name);
+
+    int found = 0;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            if (showtimes[m][t].seats[i][j].booked &&
+                strcmp(showtimes[m][t].seats[i][j].customerName, name) == 0) {
+                printf("BOOKING FOUND: Seat %c%d, Price Rs. %d\n",
+                       'A' + i, j+1, showtimes[m][t].seats[i][j].pricePaid);
+                found = 1;
+            }
+        }
+    }
+    if (!found) printf("[X] NO BOOKING FOUND FOR %s [X]\n", name);
+}
+
