@@ -53,3 +53,61 @@ void initData() {
         }
     }
 }
+void viewMovies()
+{
+    printf("\n");
+    printf("--------------------------------------\n");
+    printf("=======    AVAILABLE MOVIES    =======\n");
+    printf("--------------------------------------\n");
+    for (int m = 0; m < 3; m++)
+    {
+        printf("    %d. %s\n", m+1, showtimes[m][0].movieName);
+    }
+    printf("--------------------------------------\n");
+}
+void viewShowtimes(int m)
+{
+    printf("\n");
+    printf("\n");
+    printf("----------------------------------------------\n");
+    printf(" SHOWTIMES FOR %s\n", showtimes[m][0].movieName);
+    printf("----------------------------------------------\n");
+    for (int t = 0; t < 2; t++)
+    {
+        printf("    %d. %s\n", t+1, showtimes[m][t].showtime);
+    }
+    printf("----------------------------------------------\n");
+}
+void viewSeatMap(int m, int t)
+{
+    printf("\n");
+    printf("\n");
+    printf("--------------------------------------------------------------------\n");
+    printf("====== SEAT MAP FOR %s (%s) ======\n",
+           showtimes[m][t].movieName, showtimes[m][t].showtime);
+    printf("--------------------------------------------------------------------\n");
+    printf("\n");
+    for (int i = 0; i < ROWS; i++)
+    {
+        printf("           ROW %c: ", 'A' + i);
+        for (int j = 0; j < COLS; j++)
+        {
+            if (showtimes[m][t].seats[i][j].booked)
+                printf("X ");
+            else
+                printf(". ");
+        }
+        printf("\n");
+        printf("\n");
+    }
+    printf("--------------------------------------------------------------------\n");
+    printf("\n");
+    printf("------------------------------\n");
+    printf("=====     PRICE LIST     =====\n");
+    printf("------------------------------\n");
+    printf(" ROWS A-B (Regular): Rs. 500\n");
+    printf(" ROWS C-D (Premium): Rs. 750\n");
+    printf(" ROW E (VIP)       : Rs. 1000\n");
+    printf("------------------------------\n");
+    printf("\n");
+}
