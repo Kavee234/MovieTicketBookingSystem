@@ -247,4 +247,127 @@ void searchBooking(int m, int t) {
     }
     if (!found) printf("[X] NO BOOKING FOUND FOR %s [X]\n", name);
 }
+void revenueReport(int m, int t)
+{
+    int totalRevenue = 0, ticketsSold = 0;
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            if (showtimes[m][t].seats[i][j].booked)
+            {
+                ticketsSold++;
+                totalRevenue += showtimes[m][t].seats[i][j].pricePaid;
+            }
+        }
+    }
+    printf("\n=====  REVENUE REPORT FOR %s (%s)  =====\n",
+           showtimes[m][t].movieName, showtimes[m][t].showtime);
+    printf(" Tickets Sold: %d\n Total Revenue: Rs. %d\n",
+           ticketsSold, totalRevenue);
+}
+int main()
+{
+    initData();
+    int choice, m, t;
+    while (1)
+    {
+        clearScreen();
+        printf("--------------------------------\n");
+        printf("======  KDTIG MOVIE LAND  ======\n");
+        printf("--------------------------------\n");
+        printf("1. View Movies\n");
+        printf("2. View Showtimes\n");
+        printf("3. View Seat Map\n");
+        printf("4. Book a Seat\n");
+        printf("5. Cancel a Booking\n");
+        printf("6. Search Booking\n");
+        printf("7. View Revenue Report\n");
+        printf("8. Exit\n");
+        printf("--------------------------------\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+        printf("\n");
+        switch (choice)
+        {
+        case 1:
+            viewMovies();
+            break;
+        case 2:
+            viewMovies();
+            printf("SELECT MOVIE (1-3): ");
+            scanf("%d", &m);
+            m--;
+            viewShowtimes(m);
+            break;
+        case 3:
+            viewMovies();
+            printf("SELECT MOVIE (1-3): ");
+            scanf("%d", &m);
+            m--;
+            viewShowtimes(m);
+            printf("SELECT SHOWTIME (1-2): ");
+            scanf("%d", &t);
+            t--;
+            viewSeatMap(m, t);
+            break;
+        case 4:
+            viewMovies();
+            printf("SELECT MOVIE (1-3): ");
+            scanf("%d", &m);
+            m--;
+            viewShowtimes(m);
+            printf("SELECT SHOWTIME (1-2): ");
+            scanf("%d", &t);
+            t--;
+            bookSeat(m, t);
+            break;
+        case 5:
+            viewMovies();
+            printf("SELECT MOVIE (1-3): ");
+            scanf("%d", &m);
+            m--;
+            viewShowtimes(m);
+            printf("SELECT SHOWTIME (1-2): ");
+            scanf("%d", &t);
+            t--;
+            cancelBooking(m, t);
+            break;
+        case 6:
+            viewMovies();
+            printf("SELECT MOVIE (1-3): ");
+            scanf("%d", &m);
+            m--;
+            viewShowtimes(m);
+            printf("SELECT SHOWTIME (1-2): ");
+            scanf("%d", &t);
+            t--;
+            searchBooking(m, t);
+            break;
+        case 7:
+            viewMovies();
+            printf("SELECT MOVIE (1-3): ");
+            scanf("%d", &m);
+            m--;
+            viewShowtimes(m);
+            printf("SELECT SHOWTIME (1-2): ");
+            scanf("%d", &t);
+            t--;
+            revenueReport(m, t);
+            break;
+        case 8:
+            printf("\n Thank you for visiting KDTIG MOVIELAND!\n");
+                   return 0;
+               default:
+                       printf("[X] INVALID CHOICE! [X]\n");
+                       break;
+            }
+
+        printf("\nPRESS ENTER TO CONTINUE...");
+        getchar();
+        getchar();
+    }
+
+    return 0;
+}
 
