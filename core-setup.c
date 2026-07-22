@@ -34,7 +34,6 @@ void clearScreen() {
 #endif
 }
 
-
 void initData() {
     char movies[3][50] = {"The Odyssey", "Interstellar", "The Spider-Man : Brand New Day"};
     char times[2][20] = {"5:00 PM", "8:00 PM"};
@@ -53,6 +52,7 @@ void initData() {
         }
     }
 }
+
 void viewMovies()
 {
     printf("\n");
@@ -65,6 +65,7 @@ void viewMovies()
     }
     printf("--------------------------------------\n");
 }
+
 void viewShowtimes(int m)
 {
     printf("\n");
@@ -78,6 +79,7 @@ void viewShowtimes(int m)
     }
     printf("----------------------------------------------\n");
 }
+
 void viewSeatMap(int m, int t)
 {
     printf("\n");
@@ -111,6 +113,7 @@ void viewSeatMap(int m, int t)
     printf("------------------------------\n");
     printf("\n");
 }
+
 void bookSeat(int m, int t) {
     char name[50];
     char rowChar;
@@ -203,6 +206,7 @@ void bookSeat(int m, int t) {
     printf("     VISIT OUR SITE : https://kdtigmovieland.com    \n");
     printf("----------------------------------------------------\n");
 }
+
 void cancelBooking(int m, int t) {
     char rowChar;
     int col;
@@ -247,6 +251,7 @@ void searchBooking(int m, int t) {
     }
     if (!found) printf("[X] NO BOOKING FOUND FOR %s [X]\n", name);
 }
+
 void revenueReport(int m, int t)
 {
     int totalRevenue = 0, ticketsSold = 0;
@@ -266,6 +271,7 @@ void revenueReport(int m, int t)
     printf(" Tickets Sold: %d\n Total Revenue: Rs. %d\n",
            ticketsSold, totalRevenue);
 }
+
 int main()
 {
     initData();
@@ -367,7 +373,6 @@ int main()
         getchar();
         getchar();
     }
-
     return 0;
 }
 
